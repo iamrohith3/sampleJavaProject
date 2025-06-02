@@ -21,7 +21,8 @@ pipeline {
 
         stage('Build & Deploy') {
             steps {
-                bat 'mvn clean install -DskipTests'
+                configFileProvider([configFile(fileId: '708968c3-6dad-4f8f-9d31-666d5e16c6f7', variable: 'MAVEN_SETTINGS')]) {
+                    bat "${MAVEN_HOME}/bin/mvn -s $MAVEN_SETTINGS clean install -DskipTests"
             }
         }
 
