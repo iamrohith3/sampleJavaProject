@@ -21,14 +21,14 @@ pipeline {
 
         stage('Build & Deploy') {
             steps {
-                sh 'mvn clean verify'
+                bat 'mvn clean install'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('SonarQube') {
-                    sh 'mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN'
+                    bat "${env.SONAR_SCANNER_HOME}\\bin\\sonar-scanner.bat"
                 }
             }
         }
