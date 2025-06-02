@@ -14,8 +14,10 @@ pipeline {
     stages {
         stage('checkout') {
             steps {
-                checkout scm
+                git credentialsId: 'github-pat', url: 'https://github.com/iamrohith3/sampleJavaProject.git'
+
             }
+        }    
 
         stage('Build & Deploy') {
             steps {
